@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -15,6 +16,8 @@ public class Scene extends JPanel {
 	private static final long serialVersionUID = -8255319694373975038L;
 
 	private ImageIcon espaceFond;
+	private ImageIcon espaceFond2;
+	private ImageIcon meteoriteFond;
 	private Image espace;
 	private Image espace2;
 
@@ -22,6 +25,11 @@ public class Scene extends JPanel {
 	private Image vaisseau;
 	private int yFond1;
 	private int yFond2;
+	private Image meteorite;
+	private int meteoriteY;
+	private int meteoriteYActuel;
+	private int meteoriteXActuel;
+	private int meteoriteVit;
 	private int dy;
 	private int vaisseauX;
 	private int vaisseauXActuel;
@@ -33,15 +41,24 @@ public class Scene extends JPanel {
 		super();
 		this.vaisseauXActuel = 220;
 		this.vaisseauYActuel = 680;
+		this.meteoriteYActuel = -80;
+		this.meteoriteXActuel = meteoritePositionAleatoire();
+		this.meteoriteY = -1;
 		this.dy = -1;
 		this.yFond1 = 0;
 		this.yFond2 = -750;
-		espaceFond = new ImageIcon(getClass().getResource("../ihm/images/espace.png"));
+		this.espaceFond = new ImageIcon(getClass().getResource("../ihm/images/espace.png"));
+		this.espaceFond2 = new ImageIcon(getClass().getResource("../ihm/images/espaceR.png"));
 		this.espace = this.espaceFond.getImage();
-		this.espace2 = this.espaceFond.getImage();
-		vaisseauFond = new ImageIcon(getClass().getResource("../ihm/images/avion.png"));
+		this.espace2 = this.espaceFond2.getImage();
+		this.vaisseauFond = new ImageIcon(getClass().getResource("../ihm/images/avion.png"));
 		this.vaisseau = this.vaisseauFond.getImage();
-
+		this.meteoriteFond = new ImageIcon(getClass().getResource("../ihm/images/meteorite.png"));
+		this.meteorite = this.meteoriteFond.getImage();
+		
+		
+		
+		
 		this.setFocusable(true);
 		this.requestFocusInWindow();
 		this.addKeyListener(new Clavier());
@@ -81,12 +98,18 @@ public class Scene extends JPanel {
 	public void deplacementFond() {
 		this.yFond1 = this.yFond1 - this.dy;
 		this.yFond2 = this.yFond2 - this.dy;
-		if (this.yFond1 == 800) {
+		this.meteoriteYActuel = this.meteoriteYActuel - this.meteoriteY;
+		if(this.yFond1 == 800) {			
 			this.yFond1 = -690;
 		} else if (this.yFond2 == 800) {
 			this.yFond2 = -690;
 		}
-
+		if(this.meteoriteYActuel == 880) {
+			this.meteoriteYActuel = -80;
+			this.meteoriteXActuel = meteoritePositionAleatoire();
+		}
+		
+		
 	}
 
 	public void deplacementVaisseau() {
@@ -123,8 +146,13 @@ public class Scene extends JPanel {
 		this.deplacementFond();
 		this.deplacementVaisseau();
 		g2.drawImage(this.espace, 0, this.yFond1, d.width, d.height, this);
-		g2.drawImage(this.espace2, 0, this.yFond2, d.width, d.height, this);
-
-		g2.drawImage(this.vaisseau, this.vaisseauXActuel, this.vaisseauYActuel, 75, 75, this);
+		g2.drawImage(this.espace2, 0, this.yFond2, d.width,d.height, this);
+		g2.drawImage(this.vaisseau, this.vaisseauXActuel, this.vaisseauYActuel, 75,75,this);
+		g2.drawImage(this.meteorite, meteoriteXActuel, this.meteoriteYActuel, 80,80,this);
+	}
+	
+	public int meteoritePositionAleatoire() {
+		int random = new Random().nextInt(420);
+		return random;
 	}
 }
