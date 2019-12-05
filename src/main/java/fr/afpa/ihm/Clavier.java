@@ -8,7 +8,7 @@ import fr.afpa.startTerre.App;
 
 public class Clavier implements KeyListener{
 
-	@Override
+	
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
@@ -24,14 +24,13 @@ public class Clavier implements KeyListener{
 		}
 	}
 
-	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
 		App.scene.setVaisseauX(0);
 		App.scene.setVaisseauY(0);
 	}
 
-	@Override
+	
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
 		

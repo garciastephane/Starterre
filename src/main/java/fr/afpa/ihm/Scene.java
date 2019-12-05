@@ -35,6 +35,7 @@ public class Scene extends JPanel {
 	private int vaisseauXActuel;
 	private int vaisseauYActuel;
 	private int vaisseauY;
+	private Thread chronoEcran;
 
 	public Scene() {
 
@@ -55,15 +56,12 @@ public class Scene extends JPanel {
 		this.vaisseau = this.vaisseauFond.getImage();
 		this.meteoriteFond = new ImageIcon(getClass().getResource("../ihm/images/meteorite.png"));
 		this.meteorite = this.meteoriteFond.getImage();
-		
-		
-		
-		
+
 		this.setFocusable(true);
 		this.requestFocusInWindow();
 		this.addKeyListener(new Clavier());
 
-		Thread chronoEcran = new Thread(new Chrono());
+		chronoEcran = new Thread(new Chrono());
 		chronoEcran.start();
 	}
 
@@ -99,21 +97,44 @@ public class Scene extends JPanel {
 		this.yFond1 = this.yFond1 - this.dy;
 		this.yFond2 = this.yFond2 - this.dy;
 		this.meteoriteYActuel = this.meteoriteYActuel - this.meteoriteY;
-		if(this.yFond1 == 800) {			
+		if (this.yFond1 == 800) {
 			this.yFond1 = -690;
 		} else if (this.yFond2 == 800) {
 			this.yFond2 = -690;
 		}
-		if(this.meteoriteYActuel == 880) {
+		if (this.meteoriteYActuel == 880) {
 			this.meteoriteYActuel = -80;
 			this.meteoriteXActuel = meteoritePositionAleatoire();
 		}
-		
-		
+
 	}
 
 	public void deplacementVaisseau() {
 
+	System.out.println("vaisseauX : " +vaisseauXActuel);
+		System.out.println("METEORITE X : " +meteoriteXActuel);
+		System.out.println();		
+		System.out.println();
+		System.out.println("vaisseauY : " +vaisseauYActuel);
+		System.out.println("METEORITE Y : " +meteoriteYActuel);
+
+
+		
+		System.out.println();
+
+
+		
+		
+		if( ((vaisseauXActuel >= meteoriteXActuel && vaisseauXActuel<= meteoriteXActuel+40)
+				&& (vaisseauYActuel >= meteoriteYActuel && vaisseauYActuel <= meteoriteYActuel +40) )
+				|| ((vaisseauXActuel+75 <= meteoriteXActuel && vaisseauXActuel+75 >= meteoriteXActuel +40) 
+				&& (vaisseauYActuel >= meteoriteYActuel && vaisseauYActuel <= meteoriteYActuel +40 ) )) {
+			
+			chronoEcran.stop();
+			
+		}
+		
+		
 		if (this.vaisseauXActuel == 0) {
 
 			this.vaisseauXActuel = 1;
@@ -130,27 +151,28 @@ public class Scene extends JPanel {
 			this.vaisseauYActuel = 694;
 
 		}
-
+		
+		
 		else {
 			this.vaisseauXActuel = this.vaisseauXActuel + this.vaisseauX;
 
 			this.vaisseauYActuel = this.vaisseauYActuel + this.vaisseauY;
 		}
-	}
+		}
 
 	public void paintComponent(Graphics g) {
 
 		super.paintComponent(g);
 		Graphics g2 = (Graphics2D) g;
-		Dimension d = getSize();
+
 		this.deplacementFond();
 		this.deplacementVaisseau();
-		g2.drawImage(this.espace, 0, this.yFond1, d.width, d.height, this);
-		g2.drawImage(this.espace2, 0, this.yFond2, d.width,d.height, this);
-		g2.drawImage(this.vaisseau, this.vaisseauXActuel, this.vaisseauYActuel, 75,75,this);
-		g2.drawImage(this.meteorite, meteoriteXActuel, this.meteoriteYActuel, 80,80,this);
+		g2.drawImage(this.espace, 0, this.yFond1, null, this);
+		g2.drawImage(this.espace2, 0, this.yFond2, null, this);
+		g2.drawImage(this.vaisseau, this.vaisseauXActuel, this.vaisseauYActuel, 75, 75, this);
+		g2.drawImage(this.meteorite, meteoriteXActuel, this.meteoriteYActuel, 80, 80, this);
 	}
-	
+
 	public int meteoritePositionAleatoire() {
 		int random = new Random().nextInt(420);
 		return random;
