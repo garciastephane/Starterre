@@ -16,6 +16,8 @@ public class App
     	JFrame window = new JFrame("Star Terre");
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setSize(500, 800);
+		window.setResizable(false);
+
 		window.setLocationRelativeTo(null);
 		
 		
