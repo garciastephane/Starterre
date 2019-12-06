@@ -9,7 +9,10 @@ import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-import fr.afpa.startTerre.App;
+import fr.afpa.entite.Avion;
+import fr.afpa.entite.Meteorite;
+import fr.afpa.entite.MeteoriteDeFeu;
+
 
 public class Scene extends JPanel {
 
@@ -17,33 +20,20 @@ public class Scene extends JPanel {
 
 	private ImageIcon espaceFond;
 	private ImageIcon espaceFond2;
-	private ImageIcon meteoriteFond;
 	private Image espace;
 	private Image espace2;
 
-	private ImageIcon vaisseauFond;
-	private Image vaisseau;
 	private int yFond1;
 	private int yFond2;
-	private Image meteorite;
-	private int meteoriteY;
-	private int meteoriteYActuel;
-	private int meteoriteXActuel;
-	private int meteoriteVit;
 	private int dy;
-	private int vaisseauX;
-	private int vaisseauXActuel;
-	private int vaisseauYActuel;
-	private int vaisseauY;
+
+	public Avion avion;
+	private Meteorite meteorite;
+	private MeteoriteDeFeu meteoriteFeu;
 
 	public Scene() {
 
 		super();
-		this.vaisseauXActuel = 220;
-		this.vaisseauYActuel = 680;
-		this.meteoriteYActuel = -80;
-		this.meteoriteXActuel = meteoritePositionAleatoire();
-		this.meteoriteY = -1;
 		this.dy = -1;
 		this.yFond1 = 0;
 		this.yFond2 = -750;
@@ -51,14 +41,10 @@ public class Scene extends JPanel {
 		this.espaceFond2 = new ImageIcon(getClass().getResource("../ihm/images/espaceR.png"));
 		this.espace = this.espaceFond.getImage();
 		this.espace2 = this.espaceFond2.getImage();
-		this.vaisseauFond = new ImageIcon(getClass().getResource("../ihm/images/avion.png"));
-		this.vaisseau = this.vaisseauFond.getImage();
-		this.meteoriteFond = new ImageIcon(getClass().getResource("../ihm/images/meteorite.png"));
-		this.meteorite = this.meteoriteFond.getImage();
 		
-		
-		
-		
+		avion = new Avion("Fayaz", 220, 680);
+		meteorite = new Meteorite(meteoritePositionAleatoire(420), -80);
+		meteoriteFeu = new MeteoriteDeFeu(meteoritePositionAleatoire(420), -80);
 		this.setFocusable(true);
 		this.requestFocusInWindow();
 		this.addKeyListener(new Clavier());
@@ -67,92 +53,66 @@ public class Scene extends JPanel {
 		chronoEcran.start();
 	}
 
-	/**
-	 * @return the vaisseauX
-	 */
-	public int getVaisseauX() {
-		return vaisseauX;
-	}
-
-	/**
-	 * @param vaisseauX the vaisseauX to set
-	 */
-	public void setVaisseauX(int vaisseauX) {
-		this.vaisseauX = vaisseauX;
-	}
-
-	/**
-	 * @return the vaisseauY
-	 */
-	public int getVaisseauY() {
-		return vaisseauY;
-	}
-
-	/**
-	 * @param vaisseauY the vaisseauY to set
-	 */
-	public void setVaisseauY(int vaisseauY) {
-		this.vaisseauY = vaisseauY;
-	}
 
 	public void deplacementFond() {
 		this.yFond1 = this.yFond1 - this.dy;
 		this.yFond2 = this.yFond2 - this.dy;
-		this.meteoriteYActuel = this.meteoriteYActuel - this.meteoriteY;
+		//this.meteoriteYActuel = this.meteoriteYActuel - this.meteoriteY;
 		if(this.yFond1 == 800) {			
 			this.yFond1 = -690;
 		} else if (this.yFond2 == 800) {
 			this.yFond2 = -690;
 		}
-		if(this.meteoriteYActuel == 880) {
+	/*	if(this.meteoriteYActuel == 880) {
 			this.meteoriteYActuel = -80;
 			this.meteoriteXActuel = meteoritePositionAleatoire();
-		}
+		}*/
 		
 		
 	}
 
 	public void deplacementVaisseau() {
 
-		if (this.vaisseauXActuel == 0) {
+		if (this.avion.getX() == 0) {
 
-			this.vaisseauXActuel = 1;
+			this.avion.setX(1);
 
-		} else if (this.vaisseauXActuel == 425) {
-			this.vaisseauXActuel = 424;
+		} else if (this.avion.getX() == 425) {
+			this.avion.setX(424);
 
 		}
-		if (this.vaisseauYActuel == 0) {
+		if (this.avion.getY() == 0) {
 
-			this.vaisseauYActuel = 1;
+			this.avion.setY(1); 
 
-		} else if (this.vaisseauYActuel == 695) {
-			this.vaisseauYActuel = 694;
+		} else if (this.avion.getY() == 695) {
+			this.avion.setY(694);
 
 		}
 
 		else {
-			this.vaisseauXActuel = this.vaisseauXActuel + this.vaisseauX;
+			this.avion.setX( this.avion.getX() + this.avion.getDx());
 
-			this.vaisseauYActuel = this.vaisseauYActuel + this.vaisseauY;
+			this.avion.setY(this.avion.getY() + this.avion.getDy()); 
 		}
 	}
 
 	public void paintComponent(Graphics g) {
-
+		
 		super.paintComponent(g);
 		Graphics g2 = (Graphics2D) g;
 		Dimension d = getSize();
 		this.deplacementFond();
 		this.deplacementVaisseau();
 		g2.drawImage(this.espace, 0, this.yFond1, d.width, d.height, this);
-		g2.drawImage(this.espace2, 0, this.yFond2, d.width,d.height, this);
-		g2.drawImage(this.vaisseau, this.vaisseauXActuel, this.vaisseauYActuel, 75,75,this);
-		g2.drawImage(this.meteorite, meteoriteXActuel, this.meteoriteYActuel, 80,80,this);
+		g2.drawImage(this.espace2, 0, this.yFond2, d.width,d.height, this);	
+		g2.drawImage(this.avion.getImgVaisseau(), this.avion.getX(), this.avion.getY(), this.avion.getLargeur(),this.avion.getHauteur() ,this);	
+		g2.drawImage(this.meteorite.getMeteorite(), this.meteorite.getX(), this.meteorite.getY(), this.meteorite.getLargeur(), this.meteorite.getHauteur(),this);
+		g2.drawImage(this.meteoriteFeu.getMeteorite(), this.meteoriteFeu.getX(), this.meteoriteFeu.getY(), this.meteoriteFeu.getLargeur(), this.meteoriteFeu.getHauteur(),this);
 	}
 	
-	public int meteoritePositionAleatoire() {
-		int random = new Random().nextInt(420);
+	public static int meteoritePositionAleatoire(int value) {
+		int random = new Random().nextInt(value);
 		return random;
 	}
 }
