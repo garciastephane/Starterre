@@ -4,17 +4,17 @@ import fr.afpa.startTerre.App;
 
 public class Chrono implements Runnable {
 
-	private final int PAUSE = 3;
-	@Override
+	private final int PAUSE = 5;
+
 	public void run() {
-		// TODO Auto-generated method stub
-		while(true) {
+		while (true) {
 			App.scene.repaint();
-			
+
 			try {
+				
 				Thread.sleep(PAUSE);
+
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

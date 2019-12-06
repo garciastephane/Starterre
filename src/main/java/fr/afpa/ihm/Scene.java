@@ -49,7 +49,7 @@ public class Scene extends JPanel {
 		this.requestFocusInWindow();
 		this.addKeyListener(new Clavier());
 
-		Thread chronoEcran = new Thread(new Chrono());
+		chronoEcran = new Thread(new Chrono());
 		chronoEcran.start();
 	}
 
@@ -75,6 +75,12 @@ public class Scene extends JPanel {
 
 		if (this.avion.getX() == 0) {
 
+		if( ((vaisseauXActuel >= meteoriteXActuel && vaisseauXActuel<= meteoriteXActuel+40)
+				&& (vaisseauYActuel >= meteoriteYActuel && vaisseauYActuel <= meteoriteYActuel +40 ) )) {
+			
+				&& (vaisseauYActuel >= meteoriteYActuel && vaisseauYActuel <= meteoriteYActuel +40) )
+				|| ((vaisseauXActuel+75 <= meteoriteXActuel && vaisseauXActuel+75 >= meteoriteXActuel +40) 
+
 			this.avion.setX(1);
 
 		} else if (this.avion.getX() == 425) {
@@ -89,19 +95,20 @@ public class Scene extends JPanel {
 			this.avion.setY(694);
 
 		}
-
+		
+		
 		else {
 			this.avion.setX( this.avion.getX() + this.avion.getDx());
 
 			this.avion.setY(this.avion.getY() + this.avion.getDy()); 
 		}
-	}
+		}
 
 	public void paintComponent(Graphics g) {
 		
 		super.paintComponent(g);
 		Graphics g2 = (Graphics2D) g;
-		Dimension d = getSize();
+
 		this.deplacementFond();
 		this.deplacementVaisseau();
 		g2.drawImage(this.espace, 0, this.yFond1, d.width, d.height, this);
