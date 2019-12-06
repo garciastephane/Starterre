@@ -49,7 +49,7 @@ public class Scene extends JPanel {
 		this.requestFocusInWindow();
 		this.addKeyListener(new Clavier());
 
-		chronoEcran = new Thread(new Chrono());
+		Thread chronoEcran = new Thread(new Chrono());
 		chronoEcran.start();
 	}
 
@@ -71,15 +71,23 @@ public class Scene extends JPanel {
 		
 	}
 
+	public boolean crash() {
+		if( ((this.avion.getX() >= this.meteorite.getX() && this.avion.getX()<= this.meteorite.getX()+40)
+				&& (this.avion.getY() >= this.meteorite.getY() && this.avion.getY() <= this.meteorite.getY() +40 ) ) 
+				|| ((this.avion.getX()+75 <= this.meteorite.getX() && this.avion.getX()+75 >= this.meteorite.getX() +40)
+				&& (this.avion.getY() >= this.meteorite.getY() && this.avion.getY() <= this.meteorite.getY() +40) ))
+				 {
+					return true;
+				}
+		else {
+			return false;
+		}
+	}
+	
 	public void deplacementVaisseau() {
 
+		
 		if (this.avion.getX() == 0) {
-
-		if( ((vaisseauXActuel >= meteoriteXActuel && vaisseauXActuel<= meteoriteXActuel+40)
-				&& (vaisseauYActuel >= meteoriteYActuel && vaisseauYActuel <= meteoriteYActuel +40 ) )) {
-			
-				&& (vaisseauYActuel >= meteoriteYActuel && vaisseauYActuel <= meteoriteYActuel +40) )
-				|| ((vaisseauXActuel+75 <= meteoriteXActuel && vaisseauXActuel+75 >= meteoriteXActuel +40) 
 
 			this.avion.setX(1);
 
@@ -111,9 +119,14 @@ public class Scene extends JPanel {
 
 		this.deplacementFond();
 		this.deplacementVaisseau();
-		g2.drawImage(this.espace, 0, this.yFond1, d.width, d.height, this);
-		g2.drawImage(this.espace2, 0, this.yFond2, d.width,d.height, this);	
-		g2.drawImage(this.avion.getImgVaisseau(), this.avion.getX(), this.avion.getY(), this.avion.getLargeur(),this.avion.getHauteur() ,this);	
+		g2.drawImage(this.espace, 0, this.yFond1, 500, 800, this);
+		g2.drawImage(this.espace2, 0, this.yFond2, 500,800, this);
+		if(crash()) {
+			g2.drawImage(this.avion.getExplosionVaisseau(), this.avion.getX(), this.avion.getY(), this.avion.getLargeur(),this.avion.getHauteur() ,this);	
+		}else {
+			g2.drawImage(this.avion.getImgVaisseau(), this.avion.getX(), this.avion.getY(), this.avion.getLargeur(),this.avion.getHauteur() ,this);	
+		}
+		
 		g2.drawImage(this.meteorite.getMeteorite(), this.meteorite.getX(), this.meteorite.getY(), this.meteorite.getLargeur(), this.meteorite.getHauteur(),this);
 		g2.drawImage(this.meteoriteFeu.getMeteorite(), this.meteoriteFeu.getX(), this.meteoriteFeu.getY(), this.meteoriteFeu.getLargeur(), this.meteoriteFeu.getHauteur(),this);
 	}

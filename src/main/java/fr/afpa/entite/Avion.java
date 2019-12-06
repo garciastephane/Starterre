@@ -33,8 +33,8 @@ public class Avion {
 		this.score = new Score(nom);
 		this.iconVaisseau = new ImageIcon(getClass().getResource("../ihm/images/avion.png"));
 		this.imgVaisseau = this.iconVaisseau.getImage();
-		//this.explosionVaisseauIcon =  new ImageIcon(getClass().getResource("../ihm/images/explosion.jpg"));
-		//this.explosionVaisseau = this.explosionVaisseauIcon.getImage();
+		this.explosionVaisseauIcon =  new ImageIcon(getClass().getResource("../ihm/images/explosion.jpg"));
+		this.explosionVaisseau = this.explosionVaisseauIcon.getImage();
 	}
 
 	public String getNom() {
