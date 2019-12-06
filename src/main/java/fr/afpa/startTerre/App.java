@@ -1,5 +1,11 @@
 package fr.afpa.startTerre;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 import fr.afpa.ihm.LoginIhm;
 import fr.afpa.ihm.Scene;
 
@@ -19,7 +25,17 @@ public class App {
 		window.setLocationRelativeTo(null);
 
 		scene = new Scene();
-		window.setContentPane(scene);
+		//window.setContentPane(scene);
+		JPanel score = new JPanel();
+		JLabel pv = new JLabel("Point de vie : ");
+		JLabel name = new JLabel("Nom : ");
+		JLabel scoret = new JLabel("Score : ");
+		score.setLayout(new GridLayout(1,3));
+		score.add(pv);
+		score.add(name);
+		score.add(scoret);
+		window.getContentPane().add(score, BorderLayout.NORTH);
+		window.getContentPane().add(scene, BorderLayout.CENTER);
 		window.setVisible(true);
 
 	}

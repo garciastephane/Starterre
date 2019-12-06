@@ -10,6 +10,7 @@ public class MeteoriteDeFeu extends Meteorite {
 		super(x,y);
 		this.meteoriteIcon = new ImageIcon(getClass().getResource("../ihm/images/meteoritefeu.png"));
 		this.meteorite = this.meteoriteIcon.getImage();
+	
 	}
 
 	public static int getDegatscausefeu() {

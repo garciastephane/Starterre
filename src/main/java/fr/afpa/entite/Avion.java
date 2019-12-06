@@ -31,9 +31,9 @@ public class Avion {
 		this.nombreDeVie = 1;
 		this.estEnVie = true;
 		this.score = new Score(nom);
-		this.iconVaisseau = new ImageIcon(getClass().getResource("../ihm/images/avion.png"));
+		this.iconVaisseau = new ImageIcon(getClass().getResource("../ihm/images/vaisseau.png"));
 		this.imgVaisseau = this.iconVaisseau.getImage();
-		this.explosionVaisseauIcon =  new ImageIcon(getClass().getResource("../ihm/images/explosion.jpg"));
+		this.explosionVaisseauIcon =  new ImageIcon(getClass().getResource("../ihm/images/explosion.png"));
 		this.explosionVaisseau = this.explosionVaisseauIcon.getImage();
 	}
 

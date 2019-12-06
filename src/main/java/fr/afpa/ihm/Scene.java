@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import javax.swing.ImageIcon;
@@ -19,7 +21,6 @@ public class Scene extends JPanel {
 	private static final long serialVersionUID = -8255319694373975038L;
 
 	private ImageIcon espaceFond;
-	private ImageIcon espaceFond2;
 	private Image espace;
 	private Image espace2;
 
@@ -30,26 +31,33 @@ public class Scene extends JPanel {
 	public Avion avion;
 	private Meteorite meteorite;
 	private MeteoriteDeFeu meteoriteFeu;
-
+	Thread chronoEcran;
+	List<Meteorite> typeMeteorite = new ArrayList<Meteorite>();
+	int meteoriteRandom;
+	
 	public Scene() {
-
+		
 		super();
 		this.dy = -1;
 		this.yFond1 = 0;
 		this.yFond2 = -750;
 		this.espaceFond = new ImageIcon(getClass().getResource("../ihm/images/espace.png"));
-		this.espaceFond2 = new ImageIcon(getClass().getResource("../ihm/images/espaceR.png"));
 		this.espace = this.espaceFond.getImage();
-		this.espace2 = this.espaceFond2.getImage();
+		this.espace2 = this.espaceFond.getImage();
 		
 		avion = new Avion("Fayaz", 220, 680);
+		
 		meteorite = new Meteorite(meteoritePositionAleatoire(420), -80);
 		meteoriteFeu = new MeteoriteDeFeu(meteoritePositionAleatoire(420), -80);
+		typeMeteorite.add(meteorite);
+		typeMeteorite.add(meteoriteFeu);
+		meteoriteRandom = meteoritePositionAleatoire(typeMeteorite.size());
 		this.setFocusable(true);
 		this.requestFocusInWindow();
 		this.addKeyListener(new Clavier());
 
-		Thread chronoEcran = new Thread(new Chrono());
+		chronoEcran = new Thread(new Chrono());
+		
 		chronoEcran.start();
 	}
 
@@ -72,16 +80,17 @@ public class Scene extends JPanel {
 	}
 
 	public boolean crash() {
-		if( ((this.avion.getX() >= this.meteorite.getX() && this.avion.getX()<= this.meteorite.getX()+40)
-				&& (this.avion.getY() >= this.meteorite.getY() && this.avion.getY() <= this.meteorite.getY() +40 ) ) 
-				|| ((this.avion.getX()+75 <= this.meteorite.getX() && this.avion.getX()+75 >= this.meteorite.getX() +40)
-				&& (this.avion.getY() >= this.meteorite.getY() && this.avion.getY() <= this.meteorite.getY() +40) ))
-				 {
-					return true;
-				}
-		else {
-			return false;
+		for (Meteorite meteorite : typeMeteorite) {
+			if( ((this.avion.getX()+70  >= meteorite.getX() && avion.getX()<= meteorite.getX()+40)
+					&& (this.avion.getY() >= meteorite.getY() && avion.getY() <= meteorite.getY() +40 ) )
+					|| ((this.avion.getX()+75 <= this.meteorite.getX() && avion.getX()+75 >= meteorite.getX() +40)
+					&& (this.avion.getY()>= this.meteorite.getY() && avion.getY() <= meteorite.getY() +40) ))
+					 {
+						this.avion.setEstEnVie(false);
+						return true;
+					}
 		}
+		return false;
 	}
 	
 	public void deplacementVaisseau() {
@@ -103,20 +112,23 @@ public class Scene extends JPanel {
 			this.avion.setY(694);
 
 		}
-		
-		
+	
 		else {
 			this.avion.setX( this.avion.getX() + this.avion.getDx());
 
 			this.avion.setY(this.avion.getY() + this.avion.getDy()); 
 		}
-		}
-
+	}
+	
+	
 	public void paintComponent(Graphics g) {
 		
 		super.paintComponent(g);
 		Graphics g2 = (Graphics2D) g;
 
+		if(!this.avion.isEstEnVie()) {
+			chronoEcran.suspend();
+		}
 		this.deplacementFond();
 		this.deplacementVaisseau();
 		g2.drawImage(this.espace, 0, this.yFond1, 500, 800, this);

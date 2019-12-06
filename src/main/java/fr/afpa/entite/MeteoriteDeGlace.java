@@ -25,24 +25,6 @@ public class MeteoriteDeGlace extends Meteorite {
 		return PAUSE;
 	}
 	
-	@Override
-	public void run() {
-			try {
-				Thread.sleep(20);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			while(true) {
-				this.deplacementMeteorite();
-			    try {
-					Thread.sleep(PAUSE);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		
-	}
+	
 
 }

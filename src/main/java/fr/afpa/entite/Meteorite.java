@@ -4,7 +4,7 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
-
+import fr.afpa.startTerre.App;
 import fr.afpa.ihm.Scene;
 
 public class Meteorite implements Runnable{
@@ -16,7 +16,7 @@ public class Meteorite implements Runnable{
 	protected int y;
 	protected Image meteorite;
 	protected ImageIcon meteoriteIcon;
-	private static final int PAUSE = 6;
+	private static final int PAUSE = 7;
 	protected int meteoriteY;
 
 	
@@ -129,23 +129,21 @@ public class Meteorite implements Runnable{
 	}
 	
 	@Override
-	public void run() {
-	
+	public void run() {	
+		try {
+			Thread.sleep(20);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		while(true) {
+			this.deplacementMeteorite();
 			try {
-				Thread.sleep(20);
+				Thread.sleep(PAUSE);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+	
 			}
-			while(true) {
-				this.deplacementMeteorite();
-			    try {
-					Thread.sleep(PAUSE);
-				} catch (InterruptedException e) {
-					
-				}
-			}
-		
+		}
 	}
 	
 	@Override

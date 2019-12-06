@@ -14,6 +14,7 @@ public class Chrono implements Runnable {
 				
 				Thread.sleep(PAUSE);
 
+
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
