@@ -5,12 +5,13 @@ import javax.swing.ImageIcon;
 import fr.afpa.startTerre.App;
 
 public class MeteoriteDeGlace extends Meteorite {
-	private static final int PAUSE = 7;
+	private static int PAUSE = 7;
 	public static final int degatCauseGlace = 2;
+	private boolean contactGlace;
 	
 	public MeteoriteDeGlace(int x, int y) {
 		super(x, y);
-		this.meteoriteIcon = new ImageIcon(getClass().getResource("../ihm/images/meteoritefeu.png"));
+		this.meteoriteIcon = new ImageIcon(getClass().getResource("../ihm/images/meteoriteGlace.png"));
 		this.meteorite = this.meteoriteIcon.getImage();
 	}
 
@@ -24,7 +25,34 @@ public class MeteoriteDeGlace extends Meteorite {
 	public static int getPause() {
 		return PAUSE;
 	}
+	public static void setPAUSE(int pAUSE) {
+		PAUSE = pAUSE;
+	}
 	
-	
+	public boolean isContactGlace() {
+		return contactGlace;
+	}
 
+	public void setContactGlace(boolean contactGlace) {
+		this.contactGlace = contactGlace;
+	}
+
+	@Override
+	public void run() {
+		try {
+			Thread.sleep(100);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		while(true) {
+			this.deplacementMeteorite();
+		    try {
+				Thread.sleep(PAUSE);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
 }

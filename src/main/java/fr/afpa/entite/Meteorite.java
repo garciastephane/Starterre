@@ -15,6 +15,7 @@ public class Meteorite implements Runnable{
 	protected int x;
 	protected int y;
 	protected Image meteorite;
+	private boolean contactSimple;
 	protected ImageIcon meteoriteIcon;
 	private static  int PAUSE = 7;
 	protected int meteoriteY;
@@ -124,6 +125,14 @@ public class Meteorite implements Runnable{
 
 
 	
+	public boolean isContactSimple() {
+		return contactSimple;
+	}
+
+	public void setContactSimple(boolean contactSimple) {
+		this.contactSimple = contactSimple;
+	}
+
 	public void deplacementMeteorite() {
 		this.y = this.y+meteoriteY;
 		if(this.y == 880) {

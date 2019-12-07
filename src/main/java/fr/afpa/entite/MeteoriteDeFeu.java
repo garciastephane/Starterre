@@ -5,6 +5,7 @@ import javax.swing.ImageIcon;
 public class MeteoriteDeFeu extends Meteorite {
 	private static int PAUSE = 10;
 	private static final int DegatsCauseFeu = 2;
+	private boolean contactFeu;
 	
 	public MeteoriteDeFeu(int x, int y) {
 		super(x,y);
@@ -28,6 +29,14 @@ public class MeteoriteDeFeu extends Meteorite {
 
 	public static void setPAUSE(int pAUSE) {
 		PAUSE = pAUSE;
+	}
+
+	public boolean isContactFeu() {
+		return contactFeu;
+	}
+
+	public void setContactFeu(boolean contactFeu) {
+		this.contactFeu = contactFeu;
 	}
 
 	@Override
