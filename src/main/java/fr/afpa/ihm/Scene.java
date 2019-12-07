@@ -216,9 +216,9 @@ public class Scene extends JPanel {
 		JPanel score = scoreIhm.getScore();
 		App.window.getContentPane().add(score, BorderLayout.NORTH);
 		if(this.avion.getNombreDeVie() == 0) {
-			g2.drawImage(this.avion.getExplosionVaisseau(), this.avion.getX(), this.avion.getY(), this.avion.getLargeur(),this.avion.getHauteur() ,this);
-			FichierControl.stockerScore(scoreIhm);
+			g2.drawImage(this.avion.getExplosionVaisseau(), this.avion.getX(), this.avion.getY(), this.avion.getLargeur(),this.avion.getHauteur() ,this);	
 			chronoEcran.suspend();
+			FichierControl.stockerScore(scoreIhm);
 		}
 	}
 	

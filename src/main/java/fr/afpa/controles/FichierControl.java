@@ -20,15 +20,13 @@ public class FichierControl {
 		FileWriter fw = null;
 		BufferedWriter bw = null;
 		try {
-		//	fw = new FileWriter(System.getenv("C:\\Users\\59013-70-07\\Desktop\\testFichier"));
-		//	fw = new FileWriter(System.getenv("LABY_HOME")+"\\Score.txt", true);
 			fw = new FileWriter(System.getenv("StarTerre")+"Starterre.txt", true);	
 		    bw = new BufferedWriter(fw);
 			bw.write(playerScore.getPseudo());
 			bw.write(";");
 			bw.write(playerScore.getPointDeScore()+"");
 			bw.write(";");
-			bw.write(LocalDate.now().toString());
+			bw.write(playerScore.getDate());
 			bw.newLine();
 			bw.close();
 		}catch(Exception e){

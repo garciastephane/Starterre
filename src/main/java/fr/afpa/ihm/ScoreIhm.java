@@ -28,13 +28,15 @@ public class ScoreIhm implements Comparable<ScoreIhm>{
 		score.add(pv);
 		score.add(name);
 		score.add(scoret);
+		LocalDateTime now = LocalDateTime.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		date = now.format(formatter);
 	
 		
 	}
 	public ScoreIhm(String pseudo, int pointDeScore, String date) {
 		this.pseudo = pseudo;
 		this.pointDeScore = pointDeScore;
-		this.setDate(date);
 	}
 
 	public JPanel getScore() {
