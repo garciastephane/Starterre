@@ -37,6 +37,9 @@ public class Scene extends JPanel {
 	List<Meteorite> typeMeteorite = new ArrayList<Meteorite>();
 	int meteoriteRandom;
 	
+	/**
+	 * création de la scene, de la plateforme du jeu avec initialisation des composants
+	 */
 	public Scene() {
 		
 		super();
@@ -105,7 +108,9 @@ public class Scene extends JPanel {
 		this.meteoriteFeu = meteoriteFeu;
 	}
 
-
+	/**
+	 * défilement du background du jeu (espace)
+	 */
 	public void deplacementFond() {
 		this.yFond1 = this.yFond1 - this.dy;
 		this.yFond2 = this.yFond2 - this.dy;
@@ -117,13 +122,17 @@ public class Scene extends JPanel {
 		}
 		
 	}
-
+	
+	/**
+	 * collision entre l'avion et les météorites et s
+	 * @return
+	 */
 	public boolean crash() {
 		for (Meteorite meteorite : typeMeteorite) {
 			if( ((this.avion.getX()+30  >= meteorite.getX() && avion.getX()<= meteorite.getX()+40)
 					&& (this.avion.getY() >= meteorite.getY() && avion.getY() <= meteorite.getY() +40 && !this.avion.isContact()))
-					|| ((this.avion.getX()+75 <= this.meteorite.getX() && avion.getX()+75 >= meteorite.getX() +40)
-					&& (this.avion.getY()>= this.meteorite.getY() && avion.getY() <= meteorite.getY() +40 && !this.avion.isContact()) ))
+					|| ((this.avion.getX()+75 <= meteorite.getX() && avion.getX()+75 >= meteorite.getX() +40)
+					&& (this.avion.getY()>= meteorite.getY() && avion.getY() <= meteorite.getY() +40 && !this.avion.isContact()) ))
 					 {		
 							this.avion.setContact(true);	
 							if(this.meteorite instanceof Meteorite) {
@@ -150,7 +159,9 @@ public class Scene extends JPanel {
 		
 	}
 	
-	
+	/**
+	 * deplacement du vaisseau et les collision avec les bords du cadre
+	 */
 	public void deplacementVaisseau() {
 
 		
@@ -178,7 +189,9 @@ public class Scene extends JPanel {
 		}
 	}
 	
-	
+	/**
+	 * dessiner les composants selon leur position et leur définition
+	 */
 	public void paintComponent(Graphics g) {
 		
 		super.paintComponent(g);

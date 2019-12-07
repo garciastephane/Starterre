@@ -1,11 +1,12 @@
 package fr.afpa.ihm;
 
 import java.awt.GridLayout;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-import fr.afpa.startTerre.App;
 
 public class ScoreIhm implements Comparable<ScoreIhm>{
 
@@ -27,6 +28,8 @@ public class ScoreIhm implements Comparable<ScoreIhm>{
 		score.add(pv);
 		score.add(name);
 		score.add(scoret);
+	
+		
 	}
 	public ScoreIhm(String pseudo, int pointDeScore, String date) {
 		this.pseudo = pseudo;

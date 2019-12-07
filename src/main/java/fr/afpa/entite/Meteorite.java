@@ -133,6 +133,9 @@ public class Meteorite implements Runnable{
 		this.contactSimple = contactSimple;
 	}
 
+	/**
+	 * permet de faire descendre les météorites et de les replacer en haut lorsqu'elles dépassent l'écran
+	 */
 	public void deplacementMeteorite() {
 		this.y = this.y+meteoriteY;
 		if(this.y == 880) {
@@ -142,7 +145,9 @@ public class Meteorite implements Runnable{
 		}
 	}
 	
-
+	/**
+	 * thread pour gérer la vitesse de descente des météorites
+	 */
 	public void run() {	
 		try {
 			Thread.sleep(20);

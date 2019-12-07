@@ -8,7 +8,9 @@ import fr.afpa.startTerre.App;
 
 public class Clavier implements KeyListener{
 
-	
+	/**
+	 * direction de l'avion lorsque le joueur appuie sur un des boutons gauche droite haut bas
+	 */
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
@@ -26,6 +28,9 @@ public class Clavier implements KeyListener{
 		}
 	}
 
+	/**
+	 * on stop le déplacement en relachant le bouton
+	 */
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
 		App.scene.avion.setDx(0);

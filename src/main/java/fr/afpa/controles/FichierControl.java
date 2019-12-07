@@ -13,7 +13,7 @@ import fr.afpa.ihm.ScoreIhm;
 
 public class FichierControl {
 	/**
-	 * Stocker le nom, le score et la date du jour dans un fichier
+	 * Stocker le nom, le score et la date du moment dans un fichier
 	 * @param joueur
 	 */
 	public static void stockerScore(ScoreIhm playerScore) {
@@ -38,7 +38,7 @@ public class FichierControl {
 	}
 	 
 	/**
-	 * Lire le fichier contenant le nom, le score et la date du jour
+	 * Lire le fichier contenant le nom, le score et la date et l'heure du moment
 	 * @return un tableau de string pour pouvoir le parser
 	 */
 	public static LinkedList<String> LectureFichierScore() {
@@ -76,7 +76,7 @@ public class FichierControl {
 	}
 	
 	/**
-	 * Affichage des 10 meilleurs score;
+	 * Affichage des 20 meilleurs score;
 	 */
 	public static void afficheScore() {
 		LinkedList<ScoreIhm> listScore = getAllScore();

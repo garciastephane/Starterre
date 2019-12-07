@@ -9,12 +9,11 @@ import javax.swing.JPanel;
 
 import fr.afpa.ihm.LoginIhm;
 import fr.afpa.ihm.Scene;
-import fr.afpa.ihm.ScoreIhm;
+
 
 public class App {
 	public static Scene scene;
 	public static LoginIhm loginihm;
-	public static ScoreIhm scoreIhm;
 	public static JFrame window;
 	public static String pseudo;
 

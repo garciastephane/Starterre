@@ -6,8 +6,12 @@ import fr.afpa.controles.PlayerControl;
 
 public class LoginIhm {
 
+	/**
+	 * demande du pseudo du joueur avant le démarrage du jeu;
+	 * @return
+	 */
 	public static String lancement() {
-
+		
 		JOptionPane jop = new JOptionPane(), jop2 = new JOptionPane();
 		String nom;
 
