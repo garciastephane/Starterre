@@ -16,7 +16,7 @@ public class Meteorite implements Runnable{
 	protected int y;
 	protected Image meteorite;
 	protected ImageIcon meteoriteIcon;
-	private static final int PAUSE = 7;
+	private static  int PAUSE = 7;
 	protected int meteoriteY;
 
 	
@@ -102,6 +102,10 @@ public class Meteorite implements Runnable{
 	 */
 	public static int getPAUSE() {
 		return PAUSE;
+	}
+
+	public static void setPAUSE(int pAUSE) {
+		PAUSE = pAUSE;
 	}
 
 	/**

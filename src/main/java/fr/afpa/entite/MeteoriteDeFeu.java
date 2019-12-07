@@ -3,7 +3,7 @@ package fr.afpa.entite;
 import javax.swing.ImageIcon;
 
 public class MeteoriteDeFeu extends Meteorite {
-	private static final int PAUSE = 10;
+	private static int PAUSE = 10;
 	private static final int DegatsCauseFeu = 2;
 	
 	public MeteoriteDeFeu(int x, int y) {
@@ -24,6 +24,10 @@ public class MeteoriteDeFeu extends Meteorite {
 	 */
 	public static int getPause() {
 		return PAUSE;
+	}
+
+	public static void setPAUSE(int pAUSE) {
+		PAUSE = pAUSE;
 	}
 
 	@Override

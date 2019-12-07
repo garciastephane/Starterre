@@ -84,6 +84,26 @@ public class Scene extends JPanel {
 	}
 
 
+	public Meteorite getMeteorite() {
+		return meteorite;
+	}
+
+
+	public void setMeteorite(Meteorite meteorite) {
+		this.meteorite = meteorite;
+	}
+
+
+	public MeteoriteDeFeu getMeteoriteFeu() {
+		return meteoriteFeu;
+	}
+
+
+	public void setMeteoriteFeu(MeteoriteDeFeu meteoriteFeu) {
+		this.meteoriteFeu = meteoriteFeu;
+	}
+
+
 	public void deplacementFond() {
 		this.yFond1 = this.yFond1 - this.dy;
 		this.yFond2 = this.yFond2 - this.dy;
@@ -170,6 +190,7 @@ public class Scene extends JPanel {
 		JPanel score = scoreIhm.getScore();
 		App.window.getContentPane().add(score, BorderLayout.NORTH);
 		if(this.avion.getNombreDeVie() == 0) {
+			g2.drawImage(this.avion.getExplosionVaisseau(), this.avion.getX(), this.avion.getY(), this.avion.getLargeur(),this.avion.getHauteur() ,this);
 			chronoEcran.suspend();
 		}
 	}
