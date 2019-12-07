@@ -110,9 +110,11 @@ public class Scene extends JPanel {
 			
 			if(this.avion.getY() + 75 <this.meteorite.getY()) {
 				this.avion.setContact(false);
+				return false;
 			}
 		}
 		return false;
+		
 	}
 	
 	
