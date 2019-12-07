@@ -11,6 +11,7 @@ import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+import fr.afpa.controles.FichierControl;
 import fr.afpa.entite.Avion;
 import fr.afpa.entite.Meteorite;
 import fr.afpa.entite.MeteoriteDeFeu;
@@ -203,6 +204,7 @@ public class Scene extends JPanel {
 		App.window.getContentPane().add(score, BorderLayout.NORTH);
 		if(this.avion.getNombreDeVie() == 0) {
 			g2.drawImage(this.avion.getExplosionVaisseau(), this.avion.getX(), this.avion.getY(), this.avion.getLargeur(),this.avion.getHauteur() ,this);
+			FichierControl.stockerScore(scoreIhm);
 			chronoEcran.suspend();
 		}
 	}
