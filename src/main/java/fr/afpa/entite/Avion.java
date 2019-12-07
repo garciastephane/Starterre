@@ -14,23 +14,21 @@ public class Avion {
 	private int dy;
 	private int nombreDeVie;
 	private boolean estEnVie;
-	private Score score;
+	private boolean contact;
 	private Image imgVaisseau;
 	private ImageIcon iconVaisseau;
 	private Image explosionVaisseau;
 	private ImageIcon explosionVaisseauIcon;
 	
-	public Avion(String nom, int x, int y) {
+	public Avion(int x, int y) {
 		super();
 		this.nom = nom;
-		this.nombreDeVie = 1;
+		this.nombreDeVie = 5;
 		this.x = x;
 		this.y = y;
 		this.largeur = 75;
 		this.hauteur = 75;
-		this.nombreDeVie = 1;
 		this.estEnVie = true;
-		this.score = new Score(nom);
 		this.iconVaisseau = new ImageIcon(getClass().getResource("../ihm/images/vaisseau.png"));
 		this.imgVaisseau = this.iconVaisseau.getImage();
 		this.explosionVaisseauIcon =  new ImageIcon(getClass().getResource("../ihm/images/explosion.png"));
@@ -145,6 +143,14 @@ public class Avion {
 		this.estEnVie = estEnVie;
 	}
 
+	public boolean isContact() {
+		return contact;
+	}
+
+	public void setContact(boolean contact) {
+		this.contact = contact;
+	}
+
 	/**
 	 * @return the imgVaisseau
 	 */
@@ -159,20 +165,10 @@ public class Avion {
 		return explosionVaisseau;
 	}
 
-	public Score getScore() {
-		return score;
-	}
-
-	public void setScore(Score score) {
-		this.score = score;
-	}
-	
-	
 
 	@Override
 	public String toString() {
-		return "Avion [nom=" + nom + ", nombreDeVie=" + nombreDeVie + ", estEnVie=" + estEnVie + ", score=" + score
-				+ "]";
+		return "Avion [nom=" + nom + ", nombreDeVie=" + nombreDeVie + ", estEnVie=" + "]";
 	}
 	
 	

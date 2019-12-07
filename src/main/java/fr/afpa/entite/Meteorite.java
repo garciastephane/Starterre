@@ -123,12 +123,13 @@ public class Meteorite implements Runnable{
 	public void deplacementMeteorite() {
 		this.y = this.y+meteoriteY;
 		if(this.y == 880) {
+			App.scene.getScoreIhm().setPointDeScore(App.scene.getScoreIhm().getPointDeScore()+1);
 			this.y = -80;
 			this.x = Scene.meteoritePositionAleatoire(420);
 		}
 	}
 	
-	@Override
+
 	public void run() {	
 		try {
 			Thread.sleep(20);

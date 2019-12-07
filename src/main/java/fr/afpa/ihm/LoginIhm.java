@@ -6,7 +6,7 @@ import fr.afpa.controles.PlayerControl;
 
 public class LoginIhm {
 
-	public static void lancement() {
+	public static String lancement() {
 
 		JOptionPane jop = new JOptionPane(), jop2 = new JOptionPane();
 		String nom;
@@ -25,5 +25,6 @@ public class LoginIhm {
 			}
 
 		} while (!PlayerControl.validNamePlayer(nom));
+		return nom;
 	}
 }
