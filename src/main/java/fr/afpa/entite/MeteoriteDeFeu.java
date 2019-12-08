@@ -7,6 +7,11 @@ public class MeteoriteDeFeu extends Meteorite {
 	private static final int DegatsCauseFeu = 2;
 	private boolean contactFeu;
 	
+	/**
+	 * Mthode qui permets de creer des meteorites de feu
+	 * @param x
+	 * @param y
+	 */
 	public MeteoriteDeFeu(int x, int y) {
 		super(x,y);
 		this.meteoriteIcon = new ImageIcon(getClass().getResource("../ihm/images/meteoritefeu.png"));
@@ -46,12 +51,15 @@ public class MeteoriteDeFeu extends Meteorite {
 				+ ", hashCode()=" + hashCode() + "]";
 	}
 	
+	/**
+	 * Methode qui permets de controler le mouvement des meteorites de feu
+	 */
 	@Override
 	public void run() {
 		try {
 			Thread.sleep(100);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		while(true) {
@@ -59,7 +67,7 @@ public class MeteoriteDeFeu extends Meteorite {
 		    try {
 				Thread.sleep(PAUSE);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
+			
 				e.printStackTrace();
 			}
 		}

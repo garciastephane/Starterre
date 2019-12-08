@@ -34,6 +34,12 @@ public class ScoreIhm implements Comparable<ScoreIhm>{
 	
 		
 	}
+	/**
+	 * Methode qui permets de dessiner le score
+	 * @param pseudo
+	 * @param pointDeScore
+	 * @param date
+	 */
 	public ScoreIhm(String pseudo, int pointDeScore, String date) {
 		this.pseudo = pseudo;
 		this.pointDeScore = pointDeScore;

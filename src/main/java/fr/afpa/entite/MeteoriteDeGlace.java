@@ -9,6 +9,11 @@ public class MeteoriteDeGlace extends Meteorite {
 	public static final int degatCauseGlace = 2;
 	private boolean contactGlace;
 	
+	/**
+	 * Methode qui permets de creer des meteorites de glace
+	 * @param x
+	 * @param y
+	 */
 	public MeteoriteDeGlace(int x, int y) {
 		super(x, y);
 		this.meteoriteIcon = new ImageIcon(getClass().getResource("../ihm/images/meteoriteGlace.png"));
@@ -37,6 +42,9 @@ public class MeteoriteDeGlace extends Meteorite {
 		this.contactGlace = contactGlace;
 	}
 
+	/**
+	 * Methode qui permets de controler la vitesse des meteorites de glace
+	 */
 	@Override
 	public void run() {
 		try {

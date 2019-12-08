@@ -7,7 +7,11 @@ public class MeteoriteIceBerg extends MeteoriteDeGlace{
 
 	private static final int degatCauseIceberg = 4;
 
-	
+	/**
+	 * Methode qui permets de creer les meteorites iceberg
+	 * @param x
+	 * @param y
+	 */
 	public MeteoriteIceBerg(int x, int y) {
 		super(x, y);
 		this.largeur = this.largeur * 2;

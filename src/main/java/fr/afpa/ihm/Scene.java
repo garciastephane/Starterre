@@ -222,6 +222,11 @@ public class Scene extends JPanel {
 		}
 	}
 	
+	/**
+	 * Methode qui permets de positioner un meteorite de maniere aleatoire
+	 * @param value
+	 * @return
+	 */
 	public static int meteoritePositionAleatoire(int value) {
 		int random = new Random().nextInt(value);
 		return random;
