@@ -37,7 +37,7 @@ public class Scene extends JPanel {
 	Thread chronoEcran;
 	List<Meteorite> typeMeteorite = new ArrayList<Meteorite>();
 	int meteoriteRandom;
-	private Font afficheTexte;
+	private Font afficheTexte = new Font("Arial",Font.PLAIN,50);
 
 	/**
 	 * création de la scene, de la plateforme du jeu avec initialisation des
@@ -223,9 +223,9 @@ public class Scene extends JPanel {
 			 * Methode qui affiche le game over
 			 */
 			if (Chrono < 5) {
-				Font font = new Font("Verdana", Font.BOLD, 200);
+				//Font font = new Font("Verdana", Font.BOLD, 200);
 				g2.setFont(afficheTexte);
-				g2.drawString("GAME OVER", 250, 350);
+				g2.drawString("GAME OVER", 100, 340);
 
 			}
 
