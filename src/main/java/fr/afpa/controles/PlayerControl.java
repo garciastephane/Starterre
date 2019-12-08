@@ -1,5 +1,7 @@
 package fr.afpa.controles;
 
+import fr.afpa.entite.Avion;
+
 public class PlayerControl {
 	
 	/**
@@ -12,6 +14,16 @@ public class PlayerControl {
 			return true;
 
 		return false;
+	}
+	
+	/**
+	 * Controle si joueur vivant 
+	 * @param avion
+	 * @return
+	 */
+	public static boolean esVivant(Avion avion) {
+		return avion.getNombreDeVie() > 0;
+		
 	}
 
 }
